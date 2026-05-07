@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Mail, Linkedin, ChevronDown } from "lucide-react";
+import Image from "next/image";
 
 const roles = [
   "Full Stack Developer",
@@ -84,7 +85,32 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 pt-28 pb-16 w-full">
-        <div className="flex flex-col gap-7">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+
+          {/* Photo — right on desktop, top on mobile */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="order-first lg:order-last flex-shrink-0"
+          >
+            <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80">
+              {/* Glow ring */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500/30 to-violet-500/30 blur-2xl scale-110" />
+              {/* Border ring */}
+              <div className="absolute inset-0 rounded-full border-2 border-cyan-500/30" />
+              <Image
+                src="/profile.png"
+                alt="Hasnat Ahmad"
+                fill
+                className="rounded-full object-cover object-top"
+                priority
+              />
+            </div>
+          </motion.div>
+
+          {/* Text content */}
+          <div className="flex flex-col gap-7 flex-1">
           {/* Available badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -220,6 +246,7 @@ export default function Hero() {
               </div>
             ))}
           </motion.div>
+          </div>
         </div>
       </div>
 
